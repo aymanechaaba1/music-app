@@ -1,7 +1,7 @@
 'use strict';
 
 class View {
-  render(data) {
+  render({ data }) {
     const markup = this.generateMarkup(data);
     this._clear();
     this._parent.insertAdjacentHTML('beforeend', markup);

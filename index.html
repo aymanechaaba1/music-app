@@ -8,9 +8,9 @@
     <title>Music App</title>
   </head>
   <body>
-    <div id="app" class="w-full h-screen p-5">
+    <div id="app" class="relative w-full h-scree">
       <!-- Header -->
-      <header>
+      <header class="p-5">
         <!-- Search Form -->
         <form
           action=""
@@ -42,12 +42,14 @@
       </header>
 
       <!-- Main -->
-      <main>
+      <main class="p-5">
         <!-- Results list -->
         <div
-          class="results_list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-5"
+          class="results_list h-full overflow-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-5"
         ></div>
       </main>
+      <!-- Player -->
+      <div class="player flex bottom-0 w-full sticky"></div>
     </div>
   </body>
 </html>

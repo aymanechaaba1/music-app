@@ -3,7 +3,7 @@
 import { deezer_base_url, deezer_endpoints } from './config.js';
 
 export const state = {
-  currentTrack: null,
+  currentPlayingTrack: null,
   searchResults: [],
 };
 
