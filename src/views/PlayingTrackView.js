@@ -5,12 +5,6 @@ import View from './View.js';
 class PlayingTrack extends View {
   _parent = document.querySelector('.player');
 
-  // constructor() {
-  //   // super();
-  //   // this._parent.classList.remove('hidden');
-  //   // this._parent.classList.add('flex', 'absolute');
-  // }
-
   generateMarkup({
     id,
     picture,
@@ -26,9 +20,9 @@ class PlayingTrack extends View {
           class="w-full flex py-3 px-5 bg-gray-700/20 backdrop-blur-md items-center justify-between text-slate-100"
         >
         <div class="space-y-2">
-          <div class="flex gap-3">
+          <div class="flex items-start gap-3">
             <img src="${picture}" class="w-10 h-10 object-cover rounded-md shadow-md" />
-            <h1 class="text-slate-200 text-xs md:text-base">${title}</h1>
+            <h1 class="text-slate-200 text-xs w-20 md:w-full line-clamp-2  md:text-base">${title}</h1>
           </div>
           <p class="text-xs text-gray-200">${artistName}</p>
         </div>

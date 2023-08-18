@@ -6,6 +6,9 @@ import ResultsListView from './views/ResultsListView.js';
 import SearchFromView from './views/SearchFromView.js';
 
 const controlSearch = async () => {
+  // loading songs
+  ResultsListView.loading();
+
   try {
     // get search query
     const { search_query: query } = SearchFromView.getFormData();
@@ -34,12 +37,15 @@ const controlSearch = async () => {
 
 const controlPlayTrack = async (trackId) => {
   try {
-    // current playing track
     state.searchResults.forEach((track) => (track.isPlaying = false));
-    const currTrack = state.searchResults.find((track) => track.id === trackId);
+
+    // set isPlaying=true for current track
+    const currTrack = state.searchResults.find(
+      (track) => track.id === +trackId
+    );
     currTrack.isPlaying = true;
 
-    console.log(state.currTrack);
+    console.log(currTrack);
   } catch (err) {
     console.error(err.message);
   }

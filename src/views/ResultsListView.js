@@ -16,16 +16,22 @@ class ResultsListView extends View {
       .join('');
   }
 
+  loading() {
+    const loading = `<p class="md:col-span-2 lg:col-span-3 text-gray-300 animate-pulse text-center my-5">Loading Songs...</p>`;
+    this._clear();
+    this._parent.insertAdjacentHTML('beforeend', loading);
+  }
+
   handlePlayTrack(handler) {
     this._parent.addEventListener('click', (e) => {
       const clickedTrack = e.target.closest('.track');
       if (!clickedTrack) return;
 
+      const { id } = clickedTrack.dataset;
+
       const audioTrack = clickedTrack.querySelector('audio');
 
       const { btnPlay, btnPause } = this._getControlBtns(clickedTrack);
-
-      audioTrack.paused ? audioTrack.play() : audioTrack.pause();
 
       if (btnPlay) {
         // pause all tracks
@@ -35,10 +41,11 @@ class ResultsListView extends View {
 
         // play audio, hide play btn, show pause btn
         this._playTrack(clickedTrack);
-      } else {
-        // pause audio, hide pause btn, show play btn
-        this._pauseTrack(clickedTrack);
       }
+      // pause audio, hide pause btn, show play btn
+      else this._pauseTrack(clickedTrack);
+
+      handler(id);
     });
   }
 
@@ -53,12 +60,12 @@ class ResultsListView extends View {
   }
 
   _togglePlayPauseBtn({ trackEl, play = false }) {
+    const { btnPlay, btnPause } = this._getControlBtns(trackEl);
+
     if (play) {
-      const { btnPlay, btnPause } = this._getControlBtns(trackEl);
       btnPlay.classList.add('hidden');
       btnPause.classList.remove('hidden');
     } else {
-      const { btnPlay, btnPause } = this._getControlBtns(trackEl);
       btnPause.classList.add('hidden');
       btnPlay.classList.remove('hidden');
     }
